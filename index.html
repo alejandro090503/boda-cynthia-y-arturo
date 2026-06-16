@@ -3,12 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#fff2d5">
+  <meta name="theme-color" content="#F5F7EC">
   <title>Cinthya &amp; Arturo · 10 · Octubre · 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+/* ── INVITACIÓN DESACTIVADA (temporal) ───────────────── */
+.page-disabled-overlay{
+  position:fixed;inset:0;z-index:99999;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  background:#F5F7EC;
+  font-family:'Cormorant Garamond',serif;
+  text-align:center;padding:32px;
+}
+.page-disabled-overlay h1{
+  font-size:clamp(28px,7vw,42px);font-weight:300;
+  color:#38571a;letter-spacing:6px;
+  text-transform:uppercase;margin-bottom:16px;
+}
+.page-disabled-overlay p{
+  font-family:'Lato',sans-serif;
+  font-size:clamp(13px,3.5vw,16px);
+  color:#666;line-height:1.6;max-width:360px;
+}
+body.page-disabled > *:not(.page-disabled-overlay){ display:none !important; }
+
 /* ── LE MAJOR FONT ───────────────────────────────────── */
 @font-face{
   font-family:'Le Major';
@@ -19,14 +40,14 @@
 
 /* ── TOKENS ───────────────────────────────────────────── */
 :root {
-  --peach:        #4e7a27;
+  --peach:        #6f760a;
   --peach-lt:     #D4C5B2;
-  --peach-accent: #4e7a27;
-  --peach-dim:    rgba(78,122,39,.14);
+  --peach-accent: #6f760a;
+  --peach-dim:    rgba(111,118,10,.14);
   --cream:        #38571a;
   --ink:          #FFFFFF;
-  --ink2:         #fff2d5;
-  --ink3:         #f5ecd0;
+  --ink2:         #F5F7EC;
+  --ink3:         #EDF0E0;
   --spring:       cubic-bezier(.34,1.56,.64,1);
   --smooth:       cubic-bezier(.25,.46,.45,.94);
 }
@@ -306,7 +327,7 @@ section{padding:64px 22px}
     radial-gradient(ellipse 80% 55% at 12% 25%, rgba(140,155,90,.15) 0%, transparent 52%),
     radial-gradient(ellipse 60% 70% at 88% 78%, rgba(120,145,80,.12) 0%, transparent 48%),
     radial-gradient(ellipse 100% 50% at 50% 100%, rgba(80,100,50,.2) 0%, transparent 50%),
-    linear-gradient(170deg, #4e7a27 0%, #5a8a30 30%, #4e7a27 65%, #38571a 100%);
+    linear-gradient(170deg, #7a8a5c 0%, #8a9a6a 30%, #7e8e5e 65%, #728258 100%);
   -webkit-mask-image:linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
   mask-image:linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
 }
@@ -502,7 +523,7 @@ section{padding:64px 22px}
 }
 
 /* ── DRESSCODE ────────────────────────────────────────── */
-#dresscode{background:#4e7a27;overflow:hidden;padding:64px 22px;}
+#dresscode{background:#929b6d;overflow:hidden;padding:64px 22px;}
 .dc-title{
   font-family:'Great Vibes',cursive;font-size:clamp(36px,9vw,48px);
   color:#fff;text-align:center;margin-bottom:32px;line-height:1.1;
@@ -647,11 +668,11 @@ section{padding:64px 22px}
 .rsvp-sub{text-align:center;font-size:16px;color:var(--cream);opacity:.72;line-height:1.7;margin:8px 0 28px;font-weight:500;}
 .rsvp-dl{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--peach);font-style:italic;font-weight:500;}
 .rsvp-form-wrap{max-width:340px;margin:0 auto;text-align:center;padding:0 4px}
-.rsvp-names-hint{
-  font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;font-style:italic;
-  color:var(--cream);opacity:.55;margin-bottom:16px;letter-spacing:.3px;
+.rsvp-pases-info{
+  font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;font-style:italic;
+  color:var(--cream);opacity:.7;margin-bottom:20px;letter-spacing:.3px;
 }
-.rsvp-names-wrap{display:flex;flex-direction:column;gap:10px;margin-bottom:8px;}
+.rsvp-names-wrap{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
 .rsvp-input{
   width:100%;padding:15px 18px;
   background:rgba(111,118,10,.06);border:1px solid rgba(111,118,10,.22);border-radius:10px;
@@ -661,14 +682,6 @@ section{padding:64px 22px}
 }
 .rsvp-input::placeholder{color:var(--cream);opacity:.32;font-style:italic}
 .rsvp-input:focus{border-color:rgba(111,118,10,.55)}
-.rsvp-add-btn{
-  background:none;border:none;cursor:pointer;
-  font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;
-  color:var(--peach);opacity:.65;margin:6px 0 4px;
-  letter-spacing:.5px;touch-action:manipulation;
-  transition:opacity .3s;
-}
-.rsvp-add-btn:hover{opacity:1}
 .rsvp-submit-btn{max-width:100%;margin:18px auto 0;display:flex;justify-content:center;gap:8px}
 
 
@@ -827,7 +840,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
     <circle cx="27" cy="27" r="14.5" stroke="#1e1e1e" stroke-width=".5"/>
     <circle cx="27" cy="27" r="12.5" stroke="#252525" stroke-width=".5"/>
     <!-- etiqueta central coloreada (olivo de la paleta) -->
-    <circle cx="27" cy="27" r="10" fill="#38571a"/>
+    <circle cx="27" cy="27" r="10" fill="#4a5206"/>
     <circle cx="27" cy="27" r="9.2" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".5"/>
     <!-- texto en la etiqueta -->
     <text x="27" y="24.5" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="3.2" font-weight="600" fill="rgba(255,255,255,.8)" letter-spacing=".8">CINTHYA</text>
@@ -847,7 +860,10 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 <!-- ═══════════════ 1. HERO ════════════════════════════ -->
 <section id="hero">
   <div class="h-bg" id="heroBg">
-    <img id="heroPic" src="hero.webp" alt="Cinthya y Arturo">
+    <video autoplay muted loop playsinline id="heroPic"
+           poster="hero.webp">
+      <source src="hero.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="h-ov"></div>
 
@@ -864,7 +880,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 
 <!-- ═══════════════ 1.5. FECHA ══════════════════════════ -->
 <section id="fecha">
-  <img class="fch-bg" src="fondo-fecha.webp" alt="" loading="eager">
+  <img class="fch-bg" src="fondoKM.jpeg" alt="" loading="eager">
   <div class="fch-content">
     <p class="fch-intro">Nosotros...</p>
     <p class="fch-n1">Cinthya</p>
@@ -926,14 +942,14 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
     </div>
     <p class="loc-title">Ceremonia</p>
     <div class="loc-photo" id="loc-photo-1">
-      <img src="iglesia.webp" alt="Iglesia, Tonalá" loading="lazy">
+      <img src="iglesia.webp" alt="Ceremonia Religiosa, Tonalá Jalisco" loading="lazy">
     </div>
     <p class="loc-time">5:00 pm</p>
     <p class="loc-venue">Ceremonia Religiosa<br>Tonalá, Jalisco</p>
-    <a href="https://maps.app.goo.gl/LEiT1YLP4BnALh9t6?g_st=ipc" target="_blank" rel="noopener" class="loc-btn">Ver Ubicación</a>
+    <a href="https://maps.app.goo.gl/Tonala" target="_blank" rel="noopener" class="loc-btn">Ver Ubicación</a>
   </div>
 
-  <!-- Recepción -->
+  <!-- Civil & Recepción -->
   <div class="loc-block">
     <div class="loc-icon" aria-hidden="true">
       <svg viewBox="0 0 64 64" fill="none" stroke="var(--cream)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
@@ -950,11 +966,11 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
     </div>
     <p class="loc-title">Recepción</p>
     <div class="loc-photo" id="loc-photo-2">
-      <img src="g01.webp" alt="Recepción, Tonalá" loading="lazy">
+      <img src="salon.jpeg" alt="Recepción, Tonalá Jalisco" loading="lazy">
     </div>
     <p class="loc-time">6:30 pm</p>
     <p class="loc-venue">Recepción<br>Tonalá, Jalisco</p>
-    <a href="https://maps.app.goo.gl/JXHwr11hMD7TTQqD9?g_st=ic" target="_blank" rel="noopener" class="loc-btn">Ver Ubicación</a>
+    <a href="https://maps.app.goo.gl/Tonala" target="_blank" rel="noopener" class="loc-btn">Ver Ubicación</a>
   </div>
 
 </section>
@@ -966,7 +982,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
   <h2 class="ttl" style="font-size:26px">Guarda la Fecha</h2>
   <div class="gline"></div>
   <p class="cal-sub">Agrega nuestra boda a tu calendario<br>para no perderte ni un momento.</p>
-  <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Cinthya+%26+Arturo&dates=20261010T170000/20261010T235900&details=Ceremonia+Religiosa+5:00+PM+·+Recepción+6:30+PM+·+Cena+7:30+PM+·+Fiesta+8:30+PM.+Tonalá%2C+Jalisco.&location=Tonalá%2C+Jalisco"
+  <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Cinthya+%26+Arturo&dates=20261010T170000/20261010T235900&details=Ceremonia+Religiosa+5:00+PM+·+Recepción+6:30+PM.+Tonalá%2C+Jalisco.&location=Tonalá%2C+Jalisco"
      target="_blank" rel="noopener" id="calBtn"
      class="btn btn-olive" style="max-width:310px;margin:0 auto;display:flex">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -982,7 +998,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 
     <!-- Ceremonia Religiosa -->
     <div class="it-step">
-      <div class="it-left"><span class="it-label">Ceremonia Religiosa</span></div>
+      <div class="it-left"><span class="it-label">Ceremonia</span></div>
       <div class="it-circle">
         <svg viewBox="0 0 32 32" fill="none" stroke="#38571a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
           <path d="M16 3v3M14.5 4.5h3"/>
@@ -1023,7 +1039,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
       <div class="it-right"><span class="it-time">7:30 pm</span></div>
     </div>
 
-    <!-- Fiesta -->
+    <!-- ¡A Bailar! -->
     <div class="it-step">
       <div class="it-left"><span class="it-time">8:30 pm</span></div>
       <div class="it-circle">
@@ -1076,7 +1092,28 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 </section>
 
 
-<!-- álbum removido hasta que el cliente proporcione link -->
+<!-- ═══════════════ 7. ÁLBUM COMPARTIDO ══════════════ -->
+<section id="album">
+  <span class="lbl">Captura cada momento</span>
+  <h2 class="ttl">Álbum Compartido</h2>
+  <div class="gline"></div>
+  <p class="alb-sub">Escanea el código QR y sube las fotos<br>que tomes durante nuestra boda.</p>
+
+  <div class="alb-qr-wrap">
+    <div class="alb-qr-frame">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=320x320&color=38571a&bgcolor=F5F2E8&data=https%3A%2F%2Fphotos.app.goo.gl%2Fcinthya-arturo-boda-2026"
+           alt="QR álbum compartido Cinthya y Arturo" class="alb-qr" loading="lazy">
+    </div>
+    <p class="alb-scan">Escanea con la cámara</p>
+  </div>
+
+  <a href="https://photos.app.goo.gl/cinthya-arturo-boda-2026" target="_blank" rel="noopener" class="btn alb-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    Abrir álbum
+  </a>
+
+  <p class="alb-hint">Compartes tus fotos con todos los invitados.<br>El álbum completo estará disponible después del evento.</p>
+</section>
 
 
 <!-- ═══════════════ 8. DRESS CODE ════════════════════ -->
@@ -1113,8 +1150,8 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 
   <p class="dc-type-txt">Formal · Jardín</p>
 
-  <p class="dc-msg">Los esperamos con su mejor estilo para esta celebración al aire libre.</p>
-  <p class="dc-msg">Mujeres, reserven el color blanco, crema o parecido exclusivamente para la novia.</p>
+  <p class="dc-msg">¡Prepárense para una celebración elegante al aire libre!</p>
+  <p class="dc-msg">Mujeres, reserven el color blanco o parecido exclusivamente para la novia.</p>
 </section>
 
 
@@ -1130,7 +1167,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
     <p class="fam-nms">
       <span>Narcisa Mascorro Pelayo</span>
       <span class="fam-sep">&amp;</span>
-      <span>Arturo Leon Murillo <span style="font-size:14px;opacity:.6">✝</span></span>
+      <span>Arturo Leon Murillo ✝</span>
     </p>
   </div>
 
@@ -1162,8 +1199,11 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
   <div class="fam-card">
     <p class="fam-nms">
       <span>Claudia Alejandra Ramírez Ibarra</span>
+      <span class="fam-sep">·</span>
       <span>Elizabeth Ontiveros Alvarado</span>
+      <span class="fam-sep">·</span>
       <span>Cristina Ontiveros Alvarado</span>
+      <span class="fam-sep">·</span>
       <span>Lourdes Ontiveros Alvarado</span>
     </p>
   </div>
@@ -1184,18 +1224,14 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
   </p>
 
   <div class="rsvp-form-wrap">
+    <p class="rsvp-pases-info" id="rsvpPasesInfo"></p>
+
+    <div class="rsvp-names-wrap" id="rsvpNamesWrap"></div>
+
     <button type="button" onclick="sendRSVP()" class="btn btn-olive rsvp-submit-btn">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.27h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
       Confirmar asistencia
     </button>
-  </div>
-
-  <!-- Solo adultos -->
-  <div style="margin-top:32px;text-align:center;padding:20px 24px;background:rgba(78,122,39,.06);border:1px solid rgba(78,122,39,.18);border-radius:12px;max-width:340px;margin-left:auto;margin-right:auto;">
-    <p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--cream);line-height:1.6;margin:0;">
-      Nuestro evento es exclusivo para adultos.<br>
-      <span style="font-style:italic;opacity:.7;font-size:16px;">Agradecemos tu comprensión.</span>
-    </p>
   </div>
 </section>
 
@@ -1363,17 +1399,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  sobreVid.addEventListener('ended', () => {
-    gsap.to(loaderEl, {
-      opacity: 0, duration: .6, ease: 'power2.out',
-      onComplete() {
-        loaderEl.remove();
-        initInvitation();
-        ambientWind();
-        initGallery();
-        initRSVP();
-      }
-    });
+  /* ── Corte de video en segundo específico ── */
+  const VIDEO_CUT = 4.2; /* segundos donde corta el video (sobre abierto, sin destello) */
+  let videoCutDone = false;
+  sobreVid.addEventListener('timeupdate', () => {
+    if(!videoCutDone && sobreVid.currentTime >= VIDEO_CUT){
+      videoCutDone = true;
+      sobreVid.pause();
+      gsap.to(loaderEl, {
+        opacity: 0, duration: .6, ease: 'power2.out',
+        onComplete() {
+          loaderEl.remove();
+          initInvitation();
+          ambientWind();
+          initGallery();
+          initRSVP();
+        }
+      });
+    }
   });
 });
 
@@ -1604,13 +1647,40 @@ aud.play().then(() => {
   document.addEventListener('click',      onFirstInteraction, { once: true });
 });
 
-/* ── RSVP · WHATSAPP DIRECTO ─────────────────────────── */
+/* ── RSVP · WHATSAPP ─────────────────────────────────── */
 const WA = '';
+const _pases = parseInt(new URLSearchParams(location.search).get('pases')) || 2;
 
-function initRSVP() {}
+function initRSVP() {
+  const info = document.getElementById('rsvpPasesInfo');
+  if (info) info.textContent = `Esta invitación es válida para ${_pases} ${_pases === 1 ? 'persona' : 'personas'}`;
+
+  const wrap = document.getElementById('rsvpNamesWrap');
+  if (!wrap) return;
+  for (let i = 0; i < _pases; i++) {
+    const inp = document.createElement('input');
+    inp.type = 'text';
+    inp.id = `rsvpName${i}`;
+    inp.className = 'rsvp-input';
+    inp.placeholder = i === 0 ? 'Tu nombre completo' : `Nombre de acompañante ${_pases > 2 ? i : ''}`.trim();
+    inp.autocomplete = i === 0 ? 'name' : 'off';
+    inp.maxLength = 60;
+    wrap.appendChild(inp);
+  }
+}
 
 function sendRSVP() {
-  const msg = `¡Hola! Con mucho gusto confirmo mi asistencia a la celebración de Cinthya Ontiveros y Arturo Leon. 🎉\n¡Nos vemos pronto! 💫`;
+  const names = [];
+  for (let i = 0; i < _pases; i++) {
+    const val = (document.getElementById(`rsvpName${i}`)?.value || '').trim();
+    if (i === 0 && !val) { toast('Escribe tu nombre completo'); return; }
+    if (val) names.push(val);
+  }
+
+  let msg = `¡Hola! Confirmo mi asistencia a la boda de Cinthya Ontiveros y Arturo Leon.\n\nAsistiremos (${names.length} ${names.length === 1 ? 'persona' : 'personas'}):\n`;
+  names.forEach((n, i) => { msg += `${i + 1}. ${n}\n`; });
+  msg += '\n¡Nos vemos el 10 de Octubre!';
+
   toast('Abriendo WhatsApp…');
   setTimeout(() => window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, '_blank'), 500);
 }
