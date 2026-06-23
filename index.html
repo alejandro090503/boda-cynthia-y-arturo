@@ -1025,7 +1025,7 @@ function initAll(){
   if(typeof window._startAudio==='function')window._startAudio();
 }
 
-document.addEventListener('DOMContentLoaded',initLoader);
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initLoader);}else{initLoader();}
 </script>
 </body>
 </html>
