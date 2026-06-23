@@ -38,7 +38,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   font-family:var(--serif);font-style:italic;font-size:14px;
   letter-spacing:5px;text-transform:uppercase;
   color:rgba(56,87,26,.95);
-  background:linear-gradient(160deg,rgba(255,255,255,.6) 0%,rgba(255,255,255,.25) 40%,rgba(255,255,255,.5) 100%);
+  background:linear-gradient(160deg,rgba(255,255,255,.65) 0%,rgba(255,255,255,.35) 40%,rgba(255,255,255,.55) 100%);
   backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
   border:1.5px solid rgba(255,255,255,.75);
   border-top-color:rgba(255,255,255,.9);
@@ -50,17 +50,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     0 -1px 0 rgba(0,0,0,.06) inset;
   cursor:pointer;
   opacity:0;
-  animation:tapGlow 2.6s ease-in-out 1.5s infinite;
-}
-@keyframes tapGlow{
-  0%,100%{
-    box-shadow:0 8px 32px rgba(56,87,26,.2),0 2px 0 rgba(255,255,255,.75) inset,0 -1px 0 rgba(0,0,0,.06) inset,0 0 0 0 rgba(56,87,26,0);
-    transform:translateX(-50%) scale(1);
-  }
-  50%{
-    box-shadow:0 8px 40px rgba(56,87,26,.3),0 2px 0 rgba(255,255,255,.85) inset,0 -1px 0 rgba(0,0,0,.06) inset,0 0 0 12px rgba(56,87,26,.06);
-    transform:translateX(-50%) scale(1.04);
-  }
 }
 #env-flash{position:fixed;inset:0;z-index:9998;background:#fff;opacity:0;pointer-events:none}
 
@@ -854,7 +843,9 @@ function initEnvelope(){
   let tapped=false,flashStarted=false,finished=false;
 
   gsap.fromTo(envImage,{opacity:0},{opacity:1,duration:1.4,ease:'power2.out'});
-  gsap.fromTo(envTap,{opacity:0,y:8},{opacity:1,y:0,duration:.9,delay:1.2,ease:'power2.out'});
+  gsap.fromTo(envTap,{opacity:0,y:8},{opacity:1,y:0,duration:.9,delay:1.2,ease:'power2.out',
+    onComplete(){gsap.to(envTap,{boxShadow:'0 8px 40px rgba(56,87,26,.3),0 2px 0 rgba(255,255,255,.85) inset,0 -1px 0 rgba(0,0,0,.06) inset,0 0 0 12px rgba(56,87,26,.06)',scale:1.04,duration:1.3,repeat:-1,yoyo:true,ease:'sine.inOut'});}
+  });
 
   function onTap(e){
     if(tapped)return;tapped=true;e.preventDefault();
