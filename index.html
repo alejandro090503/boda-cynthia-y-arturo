@@ -50,6 +50,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     0 -1px 0 rgba(0,0,0,.06) inset;
   cursor:pointer;
   opacity:0;
+  animation:tapEnter 1s ease-out 1.5s forwards,tapPulse 2.6s ease-in-out 3s infinite;
+}
+@keyframes tapEnter{
+  from{opacity:0;transform:translateX(-50%) translateY(10px)}
+  to{opacity:1;transform:translateX(-50%) translateY(0)}
+}
+@keyframes tapPulse{
+  0%,100%{box-shadow:0 8px 32px rgba(56,87,26,.2),0 2px 0 rgba(255,255,255,.75) inset,0 -1px 0 rgba(0,0,0,.06) inset}
+  50%{box-shadow:0 8px 40px rgba(56,87,26,.3),0 2px 0 rgba(255,255,255,.85) inset,0 -1px 0 rgba(0,0,0,.06) inset,0 0 0 12px rgba(56,87,26,.06)}
 }
 #env-flash{position:fixed;inset:0;z-index:9998;background:#fff;opacity:0;pointer-events:none}
 
