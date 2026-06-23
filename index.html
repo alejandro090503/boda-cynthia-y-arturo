@@ -773,6 +773,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
         </svg>
       </div>
       <p class="kids-text rv">Con todo el cariño, hemos decidido que nuestra celebración sea exclusivamente para adultos. Agradecemos profundamente tu comprensión y esperamos disfrutes una noche libre, a tu ritmo, junto a nosotros.</p>
+      <p class="rv" style="font-family:var(--script);font-size:clamp(36px,5vw,52px);color:var(--dark);margin-top:32px;line-height:1.1">No Niños</p>
     </div>
   </section>
 
@@ -1081,6 +1082,8 @@ function initEnvelope(){
   var urlPases  = (isNaN(rawP) || rawP < 1 || rawP > 20) ? 1 : rawP;
 
   var rsvpChoice  = null;
+  var savedNames  = [];
+  var pasesAsignados = urlPases;
   var noteEl      = document.getElementById('rsvp-pases-note');
   var pasesNumEl  = document.getElementById('rsvp-pases-num');
   var fieldsEl    = document.getElementById('rsvp-fields');
@@ -1090,12 +1093,19 @@ function initEnvelope(){
   var btnText     = document.getElementById('rsvp-btn-text');
   var feedbackEl  = document.getElementById('rsvp-feedback');
 
-  if (pasesNumEl) pasesNumEl.textContent = urlPases;
-
   var rsvpNameEl = document.getElementById('rsvp-name-display');
   if (urlPara && rsvpNameEl) {
     rsvpNameEl.textContent = urlPara;
     rsvpNameEl.style.display = '';
+  }
+
+  // Guard silencioso: si hay ?para=, bloqueamos hasta saber pases reales del panel
+  if (urlPara) {
+    if (pasesNumEl) pasesNumEl.textContent = '…';
+    if (btnYes) btnYes.disabled = true;
+    if (btnNo)  btnNo.disabled  = true;
+  } else {
+    if (pasesNumEl) pasesNumEl.textContent = pasesAsignados;
   }
 
   function renderFields(count) {
@@ -1105,8 +1115,11 @@ function initEnvelope(){
       var inp = document.createElement('input');
       inp.className = 'rsvp-input';
       inp.type = 'text';
-      inp.placeholder = 'Invitado ' + (i + 1);
+      inp.placeholder = count === 1 ? 'Tu nombre completo' : 'Invitado ' + (i + 1);
       inp.autocomplete = 'off';
+      inp.maxLength = 60;
+      inp.value = savedNames[i] || '';
+      (function(idx){ inp.addEventListener('input', function(){ savedNames[idx] = this.value; }); })(i);
       fieldsEl.appendChild(inp);
     }
   }
@@ -1123,7 +1136,7 @@ function initEnvelope(){
     }
     if (fieldsEl) {
       if (choice === 'yes') {
-        renderFields(urlPases);
+        renderFields(pasesAsignados);
         fieldsEl.style.display = '';
       } else {
         fieldsEl.innerHTML = '';
@@ -1136,21 +1149,35 @@ function initEnvelope(){
     fetch(PANEL_API + '?nombre=' + encodeURIComponent(urlPara) + '&url_boda=' + encodeURIComponent(RSVP_URL))
       .then(function(r){ return r.json(); })
       .then(function(d){
-        if (!d.ok || !d.invitado) return;
-        var inv = d.invitado;
-        if (inv.estado === 'confirmado') {
-          selectRsvp('yes');
-          if (btnText) btnText.textContent = 'Actualizar respuesta';
-          var prev = inv.nombres_confirmados || [];
-          if (prev.length > 0 && fieldsEl) {
-            var inputs = fieldsEl.querySelectorAll('input');
-            prev.forEach(function(n, i){ if (inputs[i]) inputs[i].value = n; });
+        if (d && d.ok && d.invitado) {
+          var inv = d.invitado;
+          if (typeof inv.pases === 'number' && inv.pases > 0 && inv.pases <= 20) {
+            pasesAsignados = inv.pases; // AUTORITATIVO — ignoramos manipulación de ?pases=
           }
-        } else if (inv.estado === 'declino') {
-          selectRsvp('no');
-          if (btnText) btnText.textContent = 'Actualizar respuesta';
+          if (pasesNumEl) pasesNumEl.textContent = pasesAsignados;
+          if (btnYes) btnYes.disabled = false;
+          if (btnNo)  btnNo.disabled  = false;
+          if (inv.nombres_confirmados && inv.nombres_confirmados.length) {
+            savedNames = inv.nombres_confirmados.slice();
+          }
+          if (inv.estado === 'confirmado') {
+            selectRsvp('yes');
+            if (btnText) btnText.textContent = 'Actualizar respuesta';
+          } else if (inv.estado === 'declino') {
+            selectRsvp('no');
+            if (btnText) btnText.textContent = 'Actualizar respuesta';
+          }
+        } else {
+          if (pasesNumEl) pasesNumEl.textContent = pasesAsignados;
+          if (btnYes) btnYes.disabled = false;
+          if (btnNo)  btnNo.disabled  = false;
         }
-      }).catch(function(){});
+      })
+      .catch(function(){
+        if (pasesNumEl) pasesNumEl.textContent = pasesAsignados;
+        if (btnYes) btnYes.disabled = false;
+        if (btnNo)  btnNo.disabled  = false;
+      });
   }
 
   if (frozen) {
@@ -1198,7 +1225,7 @@ function initEnvelope(){
           nombre: nombre,
           url_boda: RSVP_URL,
           estado: rsvpChoice === 'yes' ? 'confirmado' : 'declino',
-          pases_confirmados: rsvpChoice === 'yes' ? (nombres.length || urlPases) : 0,
+          pases_confirmados: rsvpChoice === 'yes' ? (nombres.length || pasesAsignados) : 0,
           nombres_confirmados: rsvpChoice === 'yes' ? nombres : []
         })
       })
