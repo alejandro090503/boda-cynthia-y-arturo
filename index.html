@@ -322,6 +322,19 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .btn-wa:hover{background:rgba(56,87,26,.78);box-shadow:0 6px 24px rgba(56,87,26,.38)}
 .btn-wa svg{width:20px;height:20px;fill:currentColor;flex-shrink:0;opacity:.9}
 
+/* ── REGALOS ── */
+#regalos{padding:72px 28px;background:var(--bg);text-align:center}
+.gift-card{background:var(--card);border-radius:20px;padding:32px 28px;margin-top:28px;box-shadow:0 4px 24px rgba(56,87,26,.08)}
+.gift-msg{font-family:var(--serif);font-style:italic;font-size:16px;font-weight:500;line-height:1.85;color:var(--text);margin-bottom:24px}
+.gift-divider{width:40px;height:1px;background:linear-gradient(to right,transparent,var(--accent),transparent);margin:0 auto 22px}
+.gift-stores{display:flex;flex-direction:column;gap:14px;margin-top:4px}
+.btn-store{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px 24px;border-radius:50px;text-decoration:none;font-family:var(--sans);font-weight:500;font-size:14px;letter-spacing:2px;text-transform:uppercase;transition:opacity .25s}
+.btn-store:hover{opacity:.85}
+.btn-liverpool{background:var(--dark);color:#fff}
+.btn-liverpool:hover{background:rgba(56,87,26,.78)}
+.btn-store svg{width:20px;height:20px;fill:currentColor;flex-shrink:0}
+.gift-mesa{font-family:var(--sans);font-size:13px;letter-spacing:2px;color:var(--text);margin-top:12px;opacity:.7}
+
 /* ── ÁLBUM QR ── */
 #album{padding:72px 28px 36px;text-align:center;background:linear-gradient(to bottom,var(--bg) 0%,var(--surface) 14%,var(--surface) 86%,var(--bg) 100%)}
 .album-note{font-family:var(--serif);font-style:italic;font-size:17px;font-weight:500;line-height:1.75;color:var(--dark);max-width:320px;margin:16px auto 32px}
@@ -873,7 +886,24 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     </div>
   </section>
 
-  <!-- ── 12. ÁLBUM COMPARTIDO ── -->
+  <!-- ── 12. MESA DE REGALOS ── -->
+  <section id="regalos">
+    <p class="eyebrow rv">Mesa de Regalos</p>
+    <h2 class="script-title rv">Un Detalle de Amor</h2>
+    <div class="gift-card rv">
+      <p class="gift-msg">Tu presencia es nuestro mejor regalo. Pero si deseas hacernos un obsequio, lo recibiremos con mucho cariño.</p>
+      <div class="gift-divider"></div>
+      <div class="gift-stores">
+        <a class="btn-store btn-liverpool" href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/60007764" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M20 12v7a1 1 0 01-1 1H5a1 1 0 01-1-1v-7"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 110-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 100-5C13 2 12 7 12 7z"/></svg>
+          Liverpool
+        </a>
+      </div>
+      <p class="gift-mesa">No. de mesa: 60007764</p>
+    </div>
+  </section>
+
+  <!-- ── 13. ÁLBUM COMPARTIDO ── -->
   <section id="album">
     <div class="ornament rv" style="padding:0 0 8px;background:transparent;">
       <svg viewBox="0 0 360 64" fill="none" xmlns="http://www.w3.org/2000/svg">
